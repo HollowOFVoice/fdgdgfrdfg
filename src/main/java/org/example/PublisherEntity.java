@@ -5,7 +5,14 @@ import lombok.Data;
 @Data
 public class PublisherEntity {
 
-    private String namePublish;
-   private String city;
+    private String namePublisher;
+   private String cityPublisher;
+
+
+    @Override
+    public String toString() {
+        return
+                 namePublisher + ".    Город издателя:    " + cityPublisher;
+    }
 
 }

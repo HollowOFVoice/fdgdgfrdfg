@@ -180,7 +180,7 @@ public class  Main {
         System.out.println("Вот, что мне удалось найти:  \n" + result);
         return result;
     }
-
+///hgg
     public static void delete(ListBook masBook) {
         System.out.println("Введите данные для поиска книги: ");
         Scanner scanner = new Scanner(System.in);

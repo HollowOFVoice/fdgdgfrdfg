@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 @Data
 @Getter
-public class ListBook {
-    private List<BookEntity> data;
+public class ListPartnerov {
+    private List<PotensPartneriEntity> data;
 
 
-    public ListBook() {
+    public ListPartnerov() {
         this.data = new ArrayList<>();
     }
 }

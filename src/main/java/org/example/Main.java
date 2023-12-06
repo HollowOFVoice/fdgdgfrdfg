@@ -9,19 +9,19 @@ import java.util.Scanner;
 public class  Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        ListBook masBook = new ListBook();
+        ListPartnerov partner = new ListPartnerov();
         File file = new File("./file.txt");
         if(file.createNewFile()){
-            System.out.println("Файл успешно был создан");
+            System.out.println("Ваши данные будут записанны в файл");
         }else {
-            System.out.println("Файл уже существует");
+            System.out.println("Ваши данные уже существует");
         }
         try (FileReader fileReader = new FileReader(file)){
             Scanner fileScanner = new Scanner(fileReader);
             if(fileScanner.hasNextLine()){
                 String str2 = fileScanner.nextLine();
                 Gson gson = new Gson();
-                masBook = gson.fromJson(str2, ListBook.class);
+                partner = gson.fromJson(str2, ListPartnerov.class);
             }
         }catch (FileNotFoundException e){
             System.out.println("Файл не найден ");}catch (IOException e){
@@ -39,62 +39,59 @@ public class  Main {
         }catch (Exception e){
                 System.out.println("Введено не число");
             }
+            System.out.println( "Добро пожайловать в наше бюро знакомств!" + "\n"+"сли" );
             switch (menu) {
 
-               /* case 0: {Gson gson = new Gson();
-                String str1 = gson.toJson(masBook);
-                try(FileWriter fileWriter = new FileWriter(file)){
-                    fileWriter.write(str1);
-                    System.out.println("Данные успешно созранены в файл ");
-                }catch (IOException e){
-                    throw new RuntimeException(e);
-                }
-                    System.out.println("До свидание!");
-                }
-                break;*/
-                case 1:
-                    masBook.getData().add(adddBook());
-                    break;
-                case 2:
-                    allBooks(masBook);
-                    break;
+
+                case 1: partner.getData().add(adddBook());break;
+                case 2: allBooks(partner);break;
                 case 3:
                     System.out.println("Чтобы удалить ");
-
-                   delete(masBook);
-
-//fgkjfdg
+                   delete(partner);
                     break;
                 case 4:
-                    searchMenu(masBook);
+                    searchMenu(partner);
                     break;
 
                 case 5: {Gson gson = new Gson();
-                    String str1 = gson.toJson(masBook);
+                    String str1 = gson.toJson(partner);
                     try(FileWriter fileWriter = new FileWriter(file)){
                         fileWriter.write(str1);
-                        System.out.println("Данные успешно созранены в файл ");
+                        System.out.println("Данные успешно записанны! ");
                     }catch (IOException e){
                         throw new RuntimeException(e);
                     }
                     System.out.println("До свидание!");
-                    System.out.println("／ﾌﾌ 　　　　　　 　ム｀ヽ\n" +
-                            "/ ノ) 　 ）　ヽ\n" +
-                            "/ ｜　　( ͡° ͜ʖ ͡°）ノ⌒（ゝ._,ノ\n" +
-                            "/　ﾉ⌒7⌒ヽーく　 ＼　／\n" +
-                            "丶＿ ノ ｡　　 ノ､　｡|/\n" +
-                            "　　 `ヽ `ー-'_人`ーﾉ\n" +
-                            "　　　 丶 ￣ _人'彡");
+                    System.out.println(
+                            "\n" +
+                                    "⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬜⬜⬜⬛⬛⬜⬜⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬛⬜⬛⬜⬜⬛⬜⬛⬜⬛⬜⬛⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬛⬜⬛⬜⬜⬜⬜⬛⬜⬜⬜⬛⬜⬛⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬜⬜⬜⬜⬛⬛⬛⬜⬛⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬜⬜⬜⬜⬛⬜⬜⬜⬛⬛⬛⬜⬜⬜\n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬜⬛⬛⬛⬜⬛⬜⬜⬛⬜⬛⬛⬜⬜⬜⬜\n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬛⬜⬛⬜⬛⬜⬜⬜⬛⬜⬛⬛⬛⬜⬜⬜    \n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬜⬜⬛⬜⬛⬜⬛⬜⬛⬜⬜⬛⬛⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬛⬜⬛⬜⬛⬜⬜⬜⬛⬜⬜⬛⬛⬜⬜\n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬜⬜⬛⬜⬛⬜⬛⬜⬛⬜⬜⬛⬛⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬛⬛⬛⬜⬛⬜⬜⬜⬛⬜⬜⬛⬛⬜⬜\n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬜⬜⬜⬛⬜⬜⬜⬜⬛⬜⬛⬛⬜⬜⬜\n" +
+                                    "⬜⬜⬜⬜⬛⬜⬜⬛⬛⬛⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜\n" +
+                                    "⬜⬜⬜⬜⬜⬛⬜⬜⬜⬜⬜⬜⬜⬛⬛⬛⬜⬜⬜⬜⬜ \n" +
+                                    "⬜⬜⬜⬜⬜⬜⬛⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜⬜⬜ \n" +
+                                    "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n" +
+                                    "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n" +
+                                    "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n" +
+                                    "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n");
                 }
                 break;
                 default:;
-                    System.out.println("／ﾌﾌ 　　　　　　 　ム｀ヽ\n" +
-                            "/ ノ) 　 ）　ヽ\n" +
-                            "/ ｜　　( ͡° ͜ʖ ͡°）ノ⌒（ゝ._,ノ\n" +
-                            "/　ﾉ⌒7⌒ヽーく　 ＼　／\n" +
-                            "丶＿ ノ ｡　　 ノ､　｡|/\n" +
-                            "　　 `ヽ `ー-'_人`ーﾉ\n" +
-                            "　　　 丶 ￣ _人'彡");
+                    System.out.println("Я начинаю догадываться, почему у тебя проблемы с отношениями (￣ε(#￣)");
             }
 
         } while (menu != 5);
@@ -103,142 +100,87 @@ public class  Main {
 
 
     public static void mainMenu() {
-        System.out.println("Выберите нужное действие: \n" +
-                "1 - Добавить \n" +
-                "2 - Вывести \n" +
-                "3 - удалить \n" +
-                "4 - поиск\n" +
-                "5 - закрыть программу\n");
+        System.out.println(
+                "1 - Добавить потенциального жениха или невесту \n" +
+                "2 - Вывести потенциальных женихов и невест \n" +
+                "3 - удалить уже не таких потенциальных женихов и нивест\n" +
+                "4 - поиск потенциального жениха или невесты\n" +
+                "5 - Значит не судьба (((\n");
 
     }
 
-    public static BookEntity adddBook() {
+    public static PotensPartneriEntity adddBook() {
 
-        BookEntity book = new BookEntity();
+        PotensPartneriEntity kodidatv = new PotensPartneriEntity();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название книги");
-        book.setTitle(scanner.nextLine());
-        System.out.println("Введите имя автора книги:");
+        System.out.println("Введите регистрационный номер: ");
+        kodidatv.setRegisNumber(scanner.nextLine());
 
+        System.out.println("Укажите  пол: ");
+        kodidatv.setPol(scanner.nextLine());
+        System.out.println("Введите дату регистрации: ");
+kodidatv.setRegistYear(scanner.nextLine());
+        System.out.println("Раскажите немного о себе: ");
+        kodidatv.setSvedOsebe(scanner.nextLine());
+        System.out.println("Укажите свои требования к партнеру: ");
+        kodidatv.setTrebovKpart(scanner.nextLine());
+        System.out.println("Кондидат был успешно добавлен! " + "\n");
 
-        AuthorEntity avtor = new AuthorEntity();
+        return kodidatv;
 
-        avtor.setName(scanner.nextLine());
-        System.out.println("Введите фамилию автора книги:");
-        avtor.setSurname(scanner.nextLine());
-        System.out.println("Введите отчество автора книги:");
-        avtor.setLastname(scanner.nextLine());
-        book.setAuthors(avtor);
-
-        PublisherEntity publika = new PublisherEntity();
-
-        System.out.println("Укажите имя издательства");
-        publika.setNamePublisher(scanner.nextLine());
-        System.out.println("Укажите город издательства");
-        publika.setCityPublisher(scanner.nextLine());
-        book.setPublishing(publika);
-        System.out.println("Укажите год публикации:");
-        book.setYear(scanner.nextLine());
-        System.out.println("Укажите жанр книги:");
-        book.setKind(scanner.next());
-        System.out.println("Молодой жаб, ваша книга успешна добавлена! " + "\n");
-
-        return book;
-////
     }
 
-    public static void allBooks(ListBook masBook) {
-
-
+    public static void allBooks(ListPartnerov partner) {
         int i = 1;
         int b = 0;
-        for (BookEntity bookaz : masBook.getData()) {
+        for (PotensPartneriEntity bookaz : partner.getData()) {
             b++;
-            System.out.println("Книга №" + i++ + '\n' + bookaz.toString());
-
-
+            System.out.println("Кондидат  №" + i++ + '\n' + bookaz.toString());
         }
     }
 
-    public static BookEntity searchMenu(ListBook masBook) {
-        System.out.println("Введите данные для поиска книги: ");
+    public static PotensPartneriEntity searchMenu(ListPartnerov partner) {
+        System.out.println("Введите данные для поиска кондидата: ");
         Scanner scanner = new Scanner(System.in);
-        BookEntity result = null;
+        PotensPartneriEntity result = null;
         String textSearch;
         textSearch = scanner.nextLine();
-        for (BookEntity kniga : masBook.getData()) {
-            if (kniga.getAuthors().equals(textSearch) ||
-                    kniga.getPublishing().equals(textSearch) ||
-                    kniga.getKind().equals(textSearch) ||
-                    kniga.getYear().equals(textSearch) ||
-                    kniga.getTitle().indexOf(textSearch) > -1) {
-                result = kniga;
+        for (PotensPartneriEntity kondidat : partner.getData()) {
+            if (kondidat.getPol().equals(textSearch) ||
+                    kondidat.getRegisNumber().equals(textSearch) ||
+                    kondidat.getRegistYear().equals(textSearch) ||
+                    kondidat.getSvedOsebe().equals(textSearch) ||
+                    kondidat.getTrebovKpart().indexOf(textSearch) > -1) {
+                result = kondidat;
                 break;
             }
         }
         System.out.println("Вот, что мне удалось найти:  \n" + result);
         return result;
     }
-///hgg
-    public static void delete(ListBook masBook) {
-        System.out.println("Введите данные для поиска книги: ");
+
+    public static void delete(ListPartnerov partner) {
+        System.out.println("Введите данные для поиска кондидата: ");
         Scanner scanner = new Scanner(System.in);
-        BookEntity result = null;
+        PotensPartneriEntity result = null;
         String textSearch;
         textSearch = scanner.nextLine();
-        for (BookEntity kniga : masBook.getData()) {
-            if (kniga.getAuthors().equals(textSearch) ||
-                    kniga.getPublishing().equals(textSearch) ||
-                    kniga.getKind().equals(textSearch) ||
-                    kniga.getYear().equals(textSearch) ||
-                    kniga.getTitle().indexOf(textSearch) > -1) {
-                result = kniga;
+        for (PotensPartneriEntity kondidat : partner.getData()) {
+            if (kondidat.getPol().equals(textSearch) ||
+                    kondidat.getRegisNumber().equals(textSearch) ||
+                    kondidat.getRegistYear().equals(textSearch) ||
+                    kondidat.getSvedOsebe().equals(textSearch) ||
+                    kondidat.getTrebovKpart().indexOf(textSearch) > -1) {
+                result = kondidat;
                 break;
             }
         }
-
         System.out.println("Результат вашего поиска:  \n" + result+'\n'+"Чтобы удалить нажмите 1 и 2 для отмены");
         int b = scanner.nextInt();
-        if (b==1) masBook.getData().remove(result);
+        if (b==1) partner.getData().remove(result);
         memes();
     }
-
-
-   /* public static void delll(ListBook masBook) {
-
-
-        int i = 1;
-        int b = 0;
-        for (BookEntity bookaz : masBook.getData()) {
-            b++;
-            System.out.println("Книга №" + i++ + '\n' + bookaz.toString());
-            bookaz.setId(String.valueOf(b));
-        }
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Введите номер книги, которую хотите удалить: ");
-            BookEntity result = null;
-            String textSearch;
-            textSearch = scanner.nextLine();
-            for (BookEntity kniga : masBook.getData()) {
-                if (kniga.getId().equals(textSearch) ||
-                        kniga.getTitle().indexOf(textSearch) > -1) {
-
-                    masBook.getData().remove(kniga);
-                    System.out.println("Информация о книге удалена:  \n");
-
-   *//* String b;
-    b = scanner.nextLine();
-
-    for (BookEntity boka: masBook.getData()) {
-        if (boka.getId().equals(b))
-      masBook.getData().remove(boka);*//*
-
-
-                }
-            }
-        }*/
 
     public static void memes(){
        System.out.println(".\n" +
@@ -290,6 +232,14 @@ public class  Main {
                "¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶\n" +
                "\n" );
    }
+    // проверка коректности
+    public static boolean phoneCorrect(String regDAta){
+        return regDAta.matches("\\d{13}");
+    }
+    // проверка коректности
+    public static boolean textCorrect(String text){
+        return text.matches("[А-Я][а-я]{2,15}");
+    }
     }
 
 

@@ -12,7 +12,7 @@ private String svedOsebe;
     private String registYear;
     private String trebovKpart;
 
-
+//
 
     @Override
     public String toString() {

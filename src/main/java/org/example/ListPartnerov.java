@@ -10,7 +10,7 @@ import java.util.List;
 public class ListPartnerov {
     private List<PotensPartneriEntity> data;
 
-
+//
     public ListPartnerov() {
         this.data = new ArrayList<>();
     }
